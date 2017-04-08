@@ -1,7 +1,11 @@
 package com.roomshare;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +20,9 @@ import com.roomshare.model.User;
 @Controller
 @EnableAutoConfiguration
 public class RoomControl {
-	
 	@RequestMapping("/view")
-	public String display(){
+	public String display(Model model){
+		model.addAttribute("user",new User());
 		return "landing";
 	}
 	
@@ -39,6 +43,22 @@ public class RoomControl {
 public String viewUser(@RequestParam("username")String username,@RequestParam("password")String password){
 	System.out.println(username);
 	return "redirect:test";
+}
+
+@RequestMapping(value = "/userRegister",method=RequestMethod.POST)
+public String roomRegister(@ModelAttribute User user){
+	System.out.println(user.getFirstName());
+	User userValues = new User();
+	userValues.setFirstName(user.getFirstName());
+	userValues.setLastName(user.getLastName());
+	userValues.setPassword(user.getPassword());
+	userValues.setUserName(user.getUserName());
+	userDao.save(userValues);
+	List<User> usrList =new ArrayList<User>();
+	usrList= (List<User>) userDao.findAll();
+	System.out.println(usrList.get(0).getFirstName());
+	
+	return "landing";
 }
 	
 @Autowired
