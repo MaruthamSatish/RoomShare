@@ -13,7 +13,22 @@ private long id;
 
 private String userName;
 
+public String getLastName() {
+	return lastName;
+}
+public void setLastName(String lastName) {
+	this.lastName = lastName;
+}
+public String getFirstName() {
+	return firstName;
+}
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
+}
 private String password;
+private String lastName;
+private String firstName;
+
 public long getId() {
 	return id;
 }

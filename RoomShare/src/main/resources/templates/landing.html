@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
+
 <head lang="en">
 
     <meta charset="utf-8"/>
@@ -87,7 +89,9 @@
                     <li>
                     <a href ="#" data-toggle="modal" data-target="#myModalHorizontal">Login/Register</a>
                     </li>
-                    
+                    <li>
+                    <a href ="#" data-toggle="modal" data-target="#registerModel">Register</a>
+                    </li>
                     
                 </ul>
             </div>
@@ -188,18 +192,19 @@
             <!-- Modal Body -->
             <div class="modal-body" ng-controller="loginController">
                 
-                <form class="form-horizontal" role="form" action="/userTest" id="userFormId" method="post">
+            <form class="form-horizontal" role="form" action="/userTest" id="userFormId" method="post"> 
                   <div class="form-group">
                     <label  class="col-sm-2 control-label"
                               for="inputEmail3">Email</label>
                     <div class="col-sm-10">
-                        <ng-model = "UserName" class="form-control" id="inputEmail3" placeholder="UserName"/>
+                        <input type="text" ng-model ="UserName" class="form-control" id="inputEmail3" placeholder="UserName"/>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label" for="inputPassword3" >Password</label>
                     <div class="col-sm-10">
-                        <ng-model = "password"  class="form-control" id="inputPassword3" placeholder="Password"/>
+                      
+                        <input type="text" ng-model="password" class="form-control" id="inputPassword3" placeholder="Password"/>
                     </div>
                   </div>
             
@@ -207,13 +212,16 @@
                   		
                		</div>
                		
-               		 <!-- Modal Footer -->
+               		 Modal Footer
             <div class="modal-footer">
                 <button type="submit" class="btn btn-default">Sign in</button>
                 <button type="submit" class="btn btn-default"  id="registerId">Register</button>
                 
             </div>
-                </form>
+                </form> 
+                
+          
+              
             </div>
             
            
@@ -221,6 +229,71 @@
     </div>
 
 </div>
+
+
+<div class="modal fade" id="registerModel" role="dialog" aria-labelledby="registerModel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+               
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body" ng-controller="registerController">
+
+  <form class="form-horizontal" role="form" action="#" th:action="@{/userRegister}" th:object="${user}" method="post"> 
+                  
+                    <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="firstname">FirstName</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field ="*{firstName}" class="form-control" id="firstName" placeholder="FirstName" />
+                    </div>
+                  </div>
+                  
+                   <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="firstname">LastName</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="LastName"/>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="inputEmail3">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{userName}" class="form-control" id="emailId" placeholder="UserName"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="inputPassword3" >Password</label>
+                    <div class="col-sm-10">
+                      
+                        <input type="password" th:field="*{password}" class="form-control" id="passwordId" placeholder="Password"/>
+                    </div>
+                  </div>
+            
+                  	<div class="form-group">
+                  		
+               		</div>
+               		
+               		 Modal Footer
+            <div class="modal-footer">
+                 <input type="submit" class="btn btn-default"  id="registerId" value="Register"/>
+              
+                <button type="submit" class="btn btn-default"  id="cancelId">Cancel</button>
+                
+            </div>
+                </form> 
+                </div>
+                </div></div></div>
 
 <div id="dispay"></div>
 </body>
