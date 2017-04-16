@@ -49,15 +49,14 @@ public String viewUser(@RequestParam("username")String username,@RequestParam("p
 public String roomRegister(@ModelAttribute User user){
 	System.out.println(user.getFirstName());
 	User userValues = new User();
-	userValues.setFirstName(user.getFirstName());
+	/*userValues.setFirstName(user.getFirstName());
 	userValues.setLastName(user.getLastName());
 	userValues.setPassword(user.getPassword());
-	userValues.setUserName(user.getUserName());
-	userDao.save(userValues);
+	userValues.setUserName(user.getUserName());*/
+	userDao.save(user);
 	List<User> usrList =new ArrayList<User>();
 	usrList= (List<User>) userDao.findAll();
 	System.out.println(usrList.get(0).getFirstName());
-	
 	return "landing";
 }
 	
